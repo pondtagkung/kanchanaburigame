@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kanchanaburi Player Controller</title>
+  <link rel="stylesheet" href="client.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Join Screen -->
+  <div id="join-screen" class="screen active">
+    <h1>Join Game</h1>
+    <input type="text" id="player-name" placeholder="Enter your name" maxlength="15">
+    <button id="join-btn" onclick="joinGame()">Join Game</button>
+  </div>
+  
+  <!-- Controller Screen -->
+  <div id="controller-screen" class="screen">
+    <div id="status-bar">Waiting...</div>
+    
+    <div id="wait-view" class="view active">
+      <h2 id="wait-message">Waiting for game to start...</h2>
+    </div>
+    
+    <div id="roll-view" class="view">
+      <h2>It's your turn!</h2>
+      <button id="roll-btn" class="big-btn" onclick="rollDice()">🎲 Roll Dice</button>
+    </div>
+    
+    <div id="question-view" class="view">
+      <h2 id="question-text">Question goes here?</h2>
+      <div id="options-container" class="options-grid">
+        <!-- Buttons injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="client.js"></script>
+</body>
+</html>
