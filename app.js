@@ -313,12 +313,10 @@ function endGame() {
 }
 
 window.restartGame = function() {
-  hideModal('gameover-modal');
-  players = [];
-  clearInterval(timerInterval);
-  document.getElementById('game-screen').classList.remove('active');
-  document.getElementById('setup-screen').classList.add('active');
-  updateSetupUI();
+  updateClientUI('all', 'reset');
+  setTimeout(() => {
+    window.location.reload();
+  }, 500);
 };
 
 // Pause Logic
@@ -565,6 +563,9 @@ function showRandomBonusModal() {
 // Quit Logic
 window.quitGame = function() {
   if (confirm('Are you sure you want to quit the game? All progress will be lost.')) {
-    window.restartGame();
+    updateClientUI('all', 'reset');
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 };

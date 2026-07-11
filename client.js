@@ -58,6 +58,9 @@ function connectWebSocket() {
           container.appendChild(btn);
         });
       }
+      else if (state === 'reset') {
+        window.location.reload();
+      }
     }
   };
   
