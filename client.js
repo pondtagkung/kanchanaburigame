@@ -1,11 +1,10 @@
 let ws;
-const wsPort = 8001;
 const playerId = Math.random().toString(36).substring(2, 10);
 let playerName = "";
 
 function connectWebSocket() {
-  const host = window.location.hostname;
-  ws = new WebSocket(`ws://${host}:${wsPort}`);
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
   
   ws.onopen = () => {
     document.getElementById('status-bar').innerText = 'Connected!';

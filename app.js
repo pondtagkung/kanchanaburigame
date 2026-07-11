@@ -12,10 +12,10 @@ const playerAvatars = ['🐶', '🐱', '🐼', '🦊', '🐸', '🦁'];
 
 // WebSocket Connection
 let ws;
-const wsPort = 8001;
 
 function connectWebSocket() {
-  ws = new WebSocket(`ws://${window.location.hostname}:${wsPort}`);
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
   
   ws.onopen = () => {
     console.log("Connected to server as Host");
@@ -26,7 +26,8 @@ function connectWebSocket() {
     const data = JSON.parse(event.data);
     
     if (data.type === 'host_registered') {
-      const joinUrl = `http://${data.ip}:${data.http_port}/client.html`;
+      // Use the exact same host/port the browser is using
+      const joinUrl = `${window.location.protocol}//${window.location.host}/client.html`;
       document.getElementById('join-url').innerText = joinUrl;
       const qrContainer = document.getElementById("qrcode-container");
       qrContainer.innerHTML = '';
