@@ -19,7 +19,7 @@ def get_local_ip():
 
 class GameState:
     def __init__(self):
-        self.host_ws = None
+        self.host_sockets = [] # List of host websockets
         self.client_sockets = {} # {id: ws}
 
 state = GameState()
@@ -32,9 +32,9 @@ async def broadcast_to_clients(message):
             pass
 
 async def notify_host(message):
-    if state.host_ws:
+    for ws in list(state.host_sockets):
         try:
-            await state.host_ws.send_json(message)
+            await ws.send_json(message)
         except Exception as e:
             print(f"Error notifying host: {e}")
 
@@ -50,7 +50,8 @@ async def websocket_handler(request):
                 
                 if action == 'register_host':
                     print("Host registered")
-                    state.host_ws = ws
+                    if ws not in state.host_sockets:
+                        state.host_sockets.append(ws)
                     await ws.send_json({
                         'type': 'host_registered',
                         'ip': get_local_ip(),
@@ -96,9 +97,9 @@ async def websocket_handler(request):
                 print('WebSocket connection closed with exception %s' % ws.exception())
     finally:
         # Cleanup
-        if ws == state.host_ws:
+        if ws in state.host_sockets:
             print("Host disconnected")
-            state.host_ws = None
+            state.host_sockets.remove(ws)
         else:
             to_remove = None
             for pid, client_ws in state.client_sockets.items():
