@@ -20,6 +20,19 @@ function connectWebSocket() {
   ws.onopen = () => {
     console.log("Connected to server as Host");
     ws.send(JSON.stringify({ action: 'register_host' }));
+    
+    // Keep connection alive (Render drops idle connections after 100s)
+    if (window.pingInterval) clearInterval(window.pingInterval);
+    window.pingInterval = setInterval(() => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ action: 'ping' }));
+      }
+    }, 30000);
+  };
+  
+  ws.onclose = () => {
+    console.log("Disconnected. Reconnecting...");
+    setTimeout(connectWebSocket, 3000);
   };
   
   ws.onmessage = (event) => {

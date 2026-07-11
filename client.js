@@ -15,6 +15,13 @@ function connectWebSocket() {
          name: playerName
        }));
     }
+    
+    if (window.pingInterval) clearInterval(window.pingInterval);
+    window.pingInterval = setInterval(() => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ action: 'ping' }));
+      }
+    }, 30000);
   };
   
   ws.onmessage = (event) => {
