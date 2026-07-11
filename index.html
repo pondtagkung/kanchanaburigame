@@ -40,7 +40,7 @@
       <div style="display: flex; gap: 15px; align-items: center;">
         <div class="timer" id="timer-display">15:00</div>
         <button id="pause-btn" class="btn secondary-btn">Pause</button>
-        <button id="quit-btn" class="btn secondary-btn" style="background: rgba(255, 107, 107, 0.5); border-color: transparent;">Quit</button>
+        <button id="quit-btn" class="btn secondary-btn" style="background: rgba(255, 107, 107, 0.5); border-color: transparent;" onclick="quitGame()">Quit</button>
       </div>
       <div class="turn-indicator" id="turn-indicator">Player 1's Turn</div>
     </header>
@@ -93,7 +93,7 @@
     <div id="gameover-modal" class="modal glass-panel">
       <h2>Time's Up!</h2>
       <div id="final-scores" class="final-scores"></div>
-      <button id="restart-btn" class="btn primary-btn">Play Again</button>
+      <button id="restart-btn" class="btn primary-btn" onclick="restartGame()">Play Again</button>
     </div>
   </div>
 
