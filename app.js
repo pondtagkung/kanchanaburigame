@@ -464,6 +464,10 @@ function showBonusPicModal() {
   
   currentQuestionData = { type: 'BONUS', reward: reward, correctIndex: correctAnswerIndex };
   const cp = players[currentPlayerIndex];
+  
+  showModal('question-modal');
+  showAnnouncement('Bonus Pic!', cp.name + ' must identify the location.', 'correct');
+  
   updateClientUI(cp.id, 'question', { 
      question: "What is the name of this location?", 
      options: options 
