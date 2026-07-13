@@ -437,7 +437,7 @@ function showQuestionModal(qIndex) {
     optionsEl.appendChild(btn);
   });
   
-  document.getElementById('q-image').style.display = 'none';
+  document.getElementById('q-image-container').style.display = 'none';
   showModal('question-modal');
 }
 
@@ -460,7 +460,7 @@ function showBonusPicModal() {
   
   const imgEl = document.getElementById('q-image');
   imgEl.src = `images/${imgData.file}`;
-  imgEl.style.display = 'block';
+  document.getElementById('q-image-container').style.display = 'block';
   
   currentQuestionData = { type: 'BONUS', reward: reward, correctIndex: correctAnswerIndex };
   const cp = players[currentPlayerIndex];
