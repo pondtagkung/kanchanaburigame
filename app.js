@@ -407,11 +407,15 @@ function nextTurn() {
 }
 
 function showModal(id) {
+  document.getElementById('modal-overlay').classList.add('active');
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(m => m.style.display = 'none');
   document.getElementById(id).style.display = 'flex';
 }
 
 function hideModal(id) {
   document.getElementById(id).style.display = 'none';
+  document.getElementById('modal-overlay').classList.remove('active');
 }
 
 function showQuestionModal(qIndex) {
