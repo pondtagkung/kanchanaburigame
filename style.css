@@ -557,7 +557,7 @@ input:focus {
 .modal {
   display: none;
   width: 90%;
-  max-width: 650px;
+  max-width: 850px;
   color: var(--text-dark);
   background: rgba(255,255,255,0.95);
   border: none;
@@ -589,7 +589,7 @@ input:focus {
 
 .image-container img {
   width: 100%;
-  max-height: 280px;
+  max-height: 420px;
   object-fit: cover;
   border-radius: 16px;
   margin-bottom: 20px;
